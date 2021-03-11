@@ -1,0 +1,19 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class OcSen {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		double A = sc.nextInt();
+		double B = sc.nextInt();
+		double V = sc.nextInt();
+
+		int soNgay = (int) ((V - A) / (A - B)) + 1;
+		if ((V - A) / (A - B) != (int) ((V - A) / (A - B))) {
+			soNgay++;
+		}
+		System.out.println(soNgay);
+	}
+}

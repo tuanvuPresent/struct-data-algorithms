@@ -1,0 +1,35 @@
+#include<iostream>
+
+using namespace std;
+
+int main(){
+	
+		// 20182011 = T = 20189999
+		int n ;
+		cin>>n;
+
+		int loaiXe = 20189999 - 20182011 + 1;
+		int count[loaiXe]={0};
+		for (int i = 0; i < n; i++) {
+			int x ;
+			cin>>x;
+			count[x - 20182011]++;
+		}
+
+		// xu ly
+		int sum = 0;
+		for (int i = 0; i < loaiXe; i++) {
+			if (count[i] != 0) {
+				if (count[i] > 5) {
+					sum += 100 + (count[i] - 5);
+				} else {
+					sum += 100;
+				}
+			}
+		}
+
+		// xuat
+		cout<<sum;
+	
+	return 0;
+}

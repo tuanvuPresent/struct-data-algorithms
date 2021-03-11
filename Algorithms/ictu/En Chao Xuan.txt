@@ -1,0 +1,81 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class EnChaoXuan {
+
+	static long output[];
+
+	private static boolean soSanh(int key, long output[], int k) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < k; i++) {
+			if (key == output[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static void timSo(int n) {
+		// TODO Auto-generated method stub
+		int i = 11;
+		while (i <= n) {
+			// khoi tao va tach cac chu so output[i-1] va luu vao outputSoSanh
+			long old = output[i - 1];
+			long outputSoSanh[] = new long[100]; // mang luu cac chu so cua output[i-1]
+			int k = 0; // do dai mang so sanh
+			while (old > 0) {
+				outputSoSanh[k] = old % 10;
+				old = old / 10;
+				k++;
+			}
+			// chon so dau tien cho so hien tai
+			if (outputSoSanh[k - 1] < 9) {
+				output[i] = outputSoSanh[k - 1] + 1;
+			} else {
+				for (int j = 1; j < 10; j++) {
+					if (soSanh(j, outputSoSanh, k)) {
+						output[i] = j;
+						break;
+					}
+				}
+			}
+			// tim ket qua
+			while (output[i] <= output[i - 1]) {
+				int j = 0;
+				for (j = 0; j < 10; j++) {
+					if (soSanh(j, outputSoSanh, k)) {
+						break;
+					}
+				}
+				output[i] = output[i] * 10 + j;
+			}
+			// phan tu output[] tiep theo
+			i++;
+		}
+	}
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		output = new long[102];
+		for (int i = 0; i <= 10; i++) {
+			output[i] = i;
+		}
+		timSo(101);
+
+		// nhap
+		int numTest = sc.nextInt();
+		// xu ly
+//		for (int i = 0; i < output.length; i++) {
+//			System.out.println(output[i] + " " + i);
+//		}
+		for (int i = 0; i < numTest; i++) {
+			int n = sc.nextInt();
+
+			// xuat
+			System.out.println(output[n]);
+		}
+
+	}
+}

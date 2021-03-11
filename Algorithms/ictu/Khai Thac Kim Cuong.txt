@@ -1,0 +1,35 @@
+#include<iostream>
+
+using namespace std;
+
+int main(){
+	//nhap
+	int n,k;
+	cin>>n;
+	cin>>k;
+	int matrix[100][100]={0};
+	
+	for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				cin>>matrix[i][j];
+			}
+		}
+	
+	//xu ly
+	int max = 0;
+		for (int i = 0; i <= n - k; i++) {
+			for (int j = 0; j <= n - k; j++) {
+
+				int sum = 0;
+				for (int row = i; row < k + i; row++) {
+					for (int col = j; col < k + j; col++) {
+						sum += matrix[row][col];
+					}
+				}
+				max = max < sum ? sum : max;
+			}
+		}
+	cout<<max;
+	
+	return 0;
+}

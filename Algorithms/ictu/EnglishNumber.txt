@@ -1,0 +1,66 @@
+#include<iostream>
+#include<stdio.h>
+
+using namespace std;
+
+int main(){
+//	//thuat toan chi sap xep cho so nguyen >=0 
+//	int input[]={1,2,7,2,3,6,5,8,9,10};
+//	//len la so lon nhat trong mang input
+//	int len=10;
+//	int count[len+1]={0};		//mang chua so lan xuat hien cua gia tri i( count[0] la so lan xuat hien cua so 0)
+//	//bat dau sap xep
+//	for(int i=0;i<len+1;i++){
+//		int x=input[i];
+//		count[x]++;
+//	}
+//	//xuat ket qua mang sap xep
+//	for(int i=0;i<len+1;i++){			//duyet tu dau den cuoi trong mang count[]
+//		for(int j=0;j<count[i];j++){	//in ra tat ca gia tri i 
+//			cout<<i<<" ";
+//		}
+//	}
+	int numTest;
+	cin>>numTest;
+	char mau[11][6]={"ZERO","ONE","TWO","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN"};
+	for(int tCase=1;tCase<=numTest;tCase++){
+		//nhap
+		int n;
+		cin>>n;
+
+		//xu ly
+		int count[10000]={0};
+		//lay tung phan tu so sanh lan luot voi mau[][]
+		for(int i=0;i<n; i++){
+			char key[6];
+			cin>>key;
+			//so sanh 11 lan voi mau
+			for(int j=0;j<=10;j++){
+				bool flag=true;
+				for(int k=0;k<3;k++){
+					if(key[k]!=mau[j][k]){
+						flag=false;
+						break;
+					}
+				}
+				//kiem tra flag
+				if(flag){
+					count[j]++;
+					break;
+				}
+			}
+//			//cap nhat i
+//			while(input[i]!=' '){
+//				i++;
+//			}
+		}
+		//xuat
+		for(int i=0;i<=10;i++){						//in ca so tu 0 den 10
+			for(int j=0;j<count[i];j++){
+				cout<<mau[i]<<" ";					//xuat ra i count[i] lan`
+			}
+		}
+		cout<<endl;
+	}
+	return 0;
+}

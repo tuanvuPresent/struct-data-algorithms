@@ -1,0 +1,17 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class test {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int numTest = sc.nextInt();
+		for (int tCase = 0; tCase < numTest; tCase++) {
+			int age = sc.nextInt();
+			int res = (age + 1) * 2 - 1;
+			System.out.println(res);
+		}
+	}
+}

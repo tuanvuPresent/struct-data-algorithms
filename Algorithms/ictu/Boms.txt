@@ -1,0 +1,44 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class Bombs {
+	static int res = 0;
+
+	private static void visit(int x, int y, int matrix[][], int n) {
+		// TODO Auto-generated method stub
+		if (x <= n && x > 0 && y <= n && y > 0 && matrix[x][y] == 0) {
+			matrix[x][y] = -1;
+			res++;
+			visit(x, y - 1, matrix, n);
+			visit(x, y + 1, matrix, n);
+			visit(x - 1, y, matrix, n);
+			visit(x + 1, y, matrix, n);
+		}
+	}
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		// so 9 laf min`
+		// nhap
+		int n = sc.nextInt();
+		int k = sc.nextInt(); // so luong luot click
+
+		int matrix[][] = new int[n + 1][n + 1];
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				matrix[i][j] = sc.nextInt();
+			}
+		}
+
+		// nhap click va xu ly
+		for (int i = 0; i < k; i++) {
+			res = 0;
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			visit(x, y, matrix, n);
+			System.out.println(res);
+		}
+	}
+}

@@ -1,0 +1,115 @@
+ #include<iostream>
+
+ using namespace std;
+  string output;
+	 bool flag = false;
+ 
+  int cmp(string s1, string s2, int n) {
+
+		for (int i = 0; i < n; i++) {
+			if (s1[i] == s2[i])
+				continue;
+			if (s1[i] >= s2[i]){
+				return 1;
+			} else {
+				return -1;
+			}
+		}
+		return 0;
+}
+
+	  string delEnd(string s){
+		string s1 = "";
+		for (int i = 0; i < s.length() - 1; i++) {
+			s1 += s[i];
+		}
+		return s1;
+	}
+
+	
+
+	  void solve(string s, int n) {
+		// TODO Auto-generated method stub
+
+		if (n == s.length() && cmp(output, s, n) != 1) {
+			// neu tim duoc thi exit
+			cout<<output;
+			flag = true;
+			return;
+		} else {
+			// thu them cac so 8 hoac 6 vao cuoi output
+			output += "8";
+			if (cmp(output, s, n) != 1) {
+				solve(s, n + 1);
+			}
+			if (flag) {
+				return;
+			}
+			output = delEnd(output);// xoa ky tu cuoi di
+
+			output += "6";
+			if (cmp(output, s, n) != 1) {
+				solve(s, n + 1);
+			}
+			if (flag) {
+				return;
+			}
+			output = delEnd(output);// xoa ky tu cuoi di
+
+			// neu khong tim thay thi output=888...8 (n-1 so 8)
+			if (output.length() == 0) {
+				output = "";
+				for (int i = 0; i < s.length() - 1; i++) {
+					output += "8";
+				}
+			cout<<output;
+			}
+		}
+	}
+
+void quickSort(int Data[], int l , int r)
+{
+	// If the first index less or equal than the last index
+	if (l <= r)
+	{
+		// Create a Key/Pivot Element
+		int key = Data[(l+r)/2];
+ 
+		// Create temp Variables to loop through array
+		int i = l;
+		int j = r;
+ 
+		while (i <= j)
+		{
+			while (Data[i] < key)
+				i++;
+			while (Data[j] > key)
+				j--;
+ 
+			if (i <= j)
+			{
+				swap(Data[i], Data[j]);
+				i++;
+				j--;
+			}
+		}
+ 
+
+		if (l < j)
+			quickSort(Data, l, j);
+		if (r > i)
+			quickSort(Data, i, r);
+	}
+}
+
+	  int main() {
+		// nhap
+		string s;
+		cin>>s;
+		int n = s.length();
+		// xu ly
+		output = "";
+		solve(s, 0);
+		
+		return 0;
+	}

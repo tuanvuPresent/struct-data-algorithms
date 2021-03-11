@@ -1,0 +1,49 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class GPS {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		// nhap
+		int ab = sc.nextInt();
+		int bc = sc.nextInt();
+		int ca = sc.nextInt();
+		int t = sc.nextInt();
+
+		if (t > 0 && t < ab)
+			System.out.println("AB");
+		else if (t == 0)
+			System.out.println("A");
+		// xu ly
+		while (t > 0) {
+			t -= ab;
+			if (t < bc && t > 0) {
+				System.out.println("BC");
+				break;
+			} else if (t == 0) {
+				System.out.println("B");
+				break;
+			}
+
+			t -= bc;
+			if (t < ca && t > 0) {
+				System.out.println("CA");
+				break;
+			} else if (t == 0) {
+				System.out.println("C");
+				break;
+			}
+
+			t -= ca;
+			if (t < ab && t > 0) {
+				System.out.println("AB");
+				break;
+			} else if (t == 0) {
+				System.out.println("A");
+				break;
+			}
+		}
+	}
+}

@@ -1,0 +1,140 @@
+package baitap;
+
+
+import java.util.Scanner;
+
+public class Robocon {
+
+	static final int TIEN = 0;
+	public static final int QUAY_PHAI = 2;
+	public static final int QUAY_TRAI = 1;
+	public static final int TRAI = 0;
+	public static final int XUONG = 1;
+	public static final int LEN = 2;
+	public static final int PHAI = 3;
+
+	private static int huongDi(int huongDi, int huongQuay) {
+		// TODO Auto-generated method stub
+		if (huongQuay == QUAY_PHAI) {
+			switch (huongDi) {
+			case LEN:
+				return PHAI;
+			case XUONG:
+				return TRAI;
+			case TRAI:
+				return LEN;
+			case PHAI:
+				return XUONG;
+			}
+		} else {
+			switch (huongDi) {
+			case LEN:
+				return TRAI;
+			case XUONG:
+				return PHAI;
+			case TRAI:
+				return XUONG;
+			case PHAI:
+				return LEN;
+			}
+		}
+		return LEN;
+	}
+
+	public static void main(String[] args)   {
+//		System.setIn(new FileInputStream("inputRobocon.txt"));
+
+		Scanner sc = new Scanner(System.in);
+		int numTest = sc.nextInt();
+		for (int tCase = 1; tCase <= numTest; tCase++) {
+			// nhap
+			int n = sc.nextInt();
+			int soThaoTac = sc.nextInt();
+			int matrix[][] = new int[n][n];
+			for (int i = 0; i < matrix.length; i++) {
+				for (int j = 0; j < matrix.length; j++) {
+					matrix[i][j] = sc.nextInt();
+				}
+			}
+			// nhap thao tac
+			int ttA[] = new int[soThaoTac];
+			for (int i = 0; i < ttA.length; i++) {
+				ttA[i] = sc.nextInt();
+			}
+			int ttB[] = new int[soThaoTac];
+			for (int i = 0; i < ttB.length; i++) {
+				ttB[i] = sc.nextInt();
+			}
+
+			// xu ly
+			int diemA = 0;
+			int diemB = 0;
+			int buocDi = 0;
+			int AHang = 0, ACot = 0;
+			int BHang = n - 1, BCot = n - 1;
+			int huongDiA = XUONG;
+			int huongDiB = LEN;
+			while (soThaoTac > 0) {
+				boolean flagA = false, flagB = false;
+				if (ttA[buocDi] == TIEN) {
+					flagA = true;
+					switch (huongDiA) {
+					case LEN:
+						AHang--;
+						break;
+					case XUONG:
+						AHang++;
+						break;
+					case TRAI:
+						ACot--;
+						break;
+					case PHAI:
+						ACot++;
+						break;
+					}
+				} else {
+					huongDiA = huongDi(huongDiA, ttA[buocDi]);
+				}
+
+				if (ttB[buocDi] == TIEN) {
+					flagB = true;
+					switch (huongDiB) {
+					case LEN:
+						BHang--;
+						break;
+					case XUONG:
+						BHang++;
+						break;
+					case TRAI:
+						BCot--;
+						break;
+					case PHAI:
+						BCot++;
+						break;
+					}
+				} else {
+					huongDiB = huongDi(huongDiB, ttB[buocDi]);
+				}
+
+				// kiem tra xem 2 robocon trung nhau
+				if (AHang == BHang && ACot == BCot) {
+					break;
+				} else {
+					if (flagA) {
+						diemA += matrix[AHang][ACot];
+						matrix[AHang][ACot] = 0;
+					}
+					if (flagB) {
+						diemB += matrix[BHang][BCot];
+						matrix[BHang][BCot] = 0;
+					}
+				}
+				soThaoTac--;
+				buocDi++;
+			}
+			// xuat ket qua
+			System.out.println(diemA + " " + diemB);
+		}
+
+	}
+}

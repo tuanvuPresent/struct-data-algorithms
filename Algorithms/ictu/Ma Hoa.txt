@@ -1,0 +1,36 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class MaHoaIctu {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int n = sc.nextInt();
+		boolean flag = true;
+		int min = 1000000001;
+		String output = "";
+		if (n >= 10) {
+			for (int i = 9; i > 1; i--) {
+				if (n % i == 0) {
+					flag = false;
+
+					output = i + output;
+					n = n / i;
+					i = 10;
+					// tim max cua 3 so
+
+				}
+			}
+		}
+		if (n == 0 && flag) {
+			System.out.println(10);
+		} else if (n > 0 && n < 10 && flag)
+			System.out.println(n);
+		else if (n >= 10)
+			System.out.println(-1);
+		else
+			System.out.println(output);
+	}
+}

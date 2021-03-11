@@ -1,0 +1,65 @@
+#include<iostream>
+
+using namespace std;
+
+	  void merge(int arr[], int left, int mid, int right) {
+		int i = left, j = mid + 1, k = 0;
+		int n = right - left + 1;
+		int B[n];
+		while ((i < mid + 1) && (j < right + 1)) {
+			if (arr[i] < arr[j]) {
+				B[k] = arr[i];
+				k++;
+				i++;
+			} else {
+				B[k] = arr[j];
+				k++;
+				j++;
+			}
+		}
+		while (i < mid + 1) {
+			B[k] = arr[i];
+			k++;
+			i++;
+		}
+		while (j < right + 1) {
+			B[k] = arr[j];
+			k++;
+			j++;
+		}
+		i = left;
+		for (k = 0; k < n; k++) {
+			arr[i] = B[k];
+			i++;
+		}
+	}
+
+	  void mergeSort(int arr[], int left, int right) {
+		if (left < right) {
+			int mid = (left + right) / 2;
+			mergeSort(arr, left, mid);
+			mergeSort(arr, mid + 1, right);
+			merge(arr, left, mid, right);
+		}
+	}
+int main() {
+
+	int n ;
+	cin>>n;
+		int arr[n];
+		for (int i = 0; i < n; i++) {
+			cin>>arr[i];
+		}
+	// xu ly
+	mergeSort(arr, 0, n - 1);
+		// tim min
+		int min = arr[1] - arr[0];
+		for (int i = 2; i < n; i++) {
+			int temp = arr[i] - arr[i - 1];
+			min = min < temp ? min : temp;
+		}
+	// xuat
+	cout<<min;
+
+	return 0;
+}

@@ -1,0 +1,44 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class HinhAnh {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		// nhap
+		int n = sc.nextInt();
+		int m = sc.nextInt();
+
+		int matrix[][] = new int[n][n];
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				matrix[i][j] = sc.nextInt();
+			}
+		}
+
+		// xu ly
+		int res = 0;
+		for (int i = 0; i <= n - m; i++) {
+			for (int j = 0; j <= n - m; j++) {
+
+				// kiem tra tung ma tran mxm
+				boolean flag = true;
+				for (int row = i; row < i + m; row++) {
+					for (int col = j; col < j + m; col++) {
+						if (matrix[row][col] == 0) {
+							flag = false;
+							break;
+						}
+					}
+				}
+
+				if (flag) {
+					res++;
+				}
+			}
+		}
+		// xuat
+		System.out.println(res);
+	}
+}

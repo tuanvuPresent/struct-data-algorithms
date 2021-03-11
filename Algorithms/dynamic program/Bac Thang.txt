@@ -1,0 +1,30 @@
+#include<iostream>
+
+using namespace std;
+	
+	int bacThang[100001]={0};
+	long long res[100001]={0};
+	
+
+int main(){
+	//initial
+	int soThang; cin>>soThang;
+	int soThangHong; cin>>soThangHong;
+	for(int i=0; i<soThangHong; i++){
+		int pos; cin>>pos;
+		bacThang[pos]=1;
+	}
+	//Dynamic planning
+	res[0]=0;
+	res[1]=1;
+	for(int i=2; i<=soThang; i++){
+		if(bacThang[i]==0){
+			res[i]= res[i-1]+ res[i-2];
+			res[i]=res[i]%14062008;
+		}
+	}
+	//output
+	cout<<res[soThang];
+	
+	return 0;
+}

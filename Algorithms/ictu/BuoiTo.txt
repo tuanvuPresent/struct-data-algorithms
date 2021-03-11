@@ -1,0 +1,33 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class TrungThu {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		// nhap
+		int n = sc.nextInt(); // so nhan vien tham du
+		int arr[] = new int[n]; // so luong
+
+		arr[0] = sc.nextInt();
+		for (int i = 1; i < n; i++) {
+			int temp = sc.nextInt();
+			arr[i] = temp + arr[i - 1];
+		}
+
+		// xu ly
+		int numPrize = sc.nextInt();
+		for (int i = 0; i < numPrize; i++) {
+			int a = sc.nextInt();
+			for (int j = 0; j < arr.length; j++) {
+				if (a <= arr[j]) {
+					// xuat
+					System.out.print((j + 1) + " ");
+					break;
+				}
+			}
+		}
+	}
+}

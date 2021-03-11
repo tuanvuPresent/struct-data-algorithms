@@ -1,0 +1,21 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class DongPhuc{
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		double m = sc.nextInt();
+		long soAo = sc.nextInt();
+		long tien = sc.nextInt();
+
+//		 x/m + x = soAo/
+		int soAoMua = (int) (soAo / (1 + 1 / m));
+		long du = soAo - (int) (soAoMua + soAoMua / m);
+		long res = (soAoMua + du) * tien;
+
+		System.out.println(res);
+	}
+}

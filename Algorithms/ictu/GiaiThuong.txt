@@ -1,0 +1,23 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class TamGiacCan {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+
+		System.out.println((a + b) * 2 + " " + a * b);
+//		double m = sc.nextInt();
+//		int soAo = sc.nextInt();
+//		int tien = sc.nextInt();
+//
+//		// x/m + x = soAo
+//		int soAoMua = (int)(soAo / (1 + 1 / m));
+//		int du = (int) (soAo % (1 + 1 / m));
+
+//		System.out.println((soAoMua + du) * tien);
+	}

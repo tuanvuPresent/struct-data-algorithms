@@ -1,0 +1,51 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class QuyHoachDoThi {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int numTest = sc.nextInt();
+		for (int tCase = 1; tCase <= numTest; tCase++) {
+			// nhap
+			int n = sc.nextInt();
+			int cost = sc.nextInt();
+			int countSort[] = new int[100001];
+			// sap xep
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					int temp;
+					temp = sc.nextInt();
+					countSort[temp]++;
+				}
+			}
+			// xu ly
+			int sumCost = 0;
+			int start = 0;
+			int end = 100000;
+			while (start < end) {
+				// start!=0
+				while (countSort[start] == 0) {
+					start++;
+				}
+				// end!=0
+				while (countSort[end] == 0) {
+					end--;
+				}
+
+				if (countSort[start] * 2 < countSort[end]) {
+					countSort[start + 1] += countSort[start];
+					sumCost += countSort[start] * 2 * cost;
+					start++;
+				} else {
+					countSort[end - 1] += countSort[end];
+					sumCost += countSort[end] * cost;
+					end--;
+				}
+			}
+			// xuat ket qua
+			System.out.println(start + " " + sumCost);
+		}
+	}
+}

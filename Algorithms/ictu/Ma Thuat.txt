@@ -1,0 +1,56 @@
+package ictu;
+
+import java.util.Scanner;
+
+public class MaThuat {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int numTest = sc.nextInt();
+		sc.nextLine();
+		for (int tCase = 1; tCase <= numTest; tCase++) {
+			String s = sc.nextLine();
+
+			char key[] = { 'a', 'e', 'i', 'o', 'u' };
+			int start = -1;
+			int end = -1;
+			int index = 0;
+			int endTemp = -1;
+			int startTemp = -1;
+			for (int i = 0; i < s.length(); i++) {
+				if (s.charAt(i) == key[index]) {
+					// tim start
+					if (index == 0)
+						startTemp = i;
+					// tim end
+					if (index == 4) {
+						endTemp = i;
+						// tim lai start, duyet nguoc lai den khi gap ky tu a
+						int k = 4;
+						for (int j = endTemp; j >= startTemp; j--) {
+							if (s.charAt(j) == key[k]) {
+								k--;
+							}
+							if (k == -1) {
+								startTemp = j;
+								break;
+							}
+						}
+						// tim start end
+						if (endTemp - startTemp < end - start || start == -1) {
+							start = startTemp;
+							end = endTemp;
+						}
+						index = -1; // resst index;
+						
+					}
+					index++;
+				}
+			}
+			// khong tim thay
+			if (end == -1) {
+				start = end = -2;
+			}
+			System.out.println((start + 1) + " " + (end + 1));
+		}
+	}
+}

@@ -1,0 +1,48 @@
+package www;
+
+import java.util.Scanner;
+
+public class Solution {
+
+	public static void main(String[] args) {
+
+		long n = 1000000007; // 10^9+7
+		// 1^2 + 2^2+...+ n^2= n(n+1)(2*n+1)/6
+		Scanner sc = new Scanner(System.in);
+
+		// nhap
+		double a = sc.nextDouble();
+		double b = sc.nextDouble();
+
+		// xu ly
+		if (a == (long) a) {
+			a = (long) a;
+		} else {
+			a = (long) a + 1;
+		}
+
+		long res = 0;
+		long x = (long) a;
+		long y = (long) b;
+
+		// CACH 1
+		// for (long i = (long) a; i <= b; i++) {
+		// long temp = i * i;
+		// res = (res + temp) % n;
+		// }
+		// CACH 2
+		// tinh du tu 1- (a-1)
+		// sum=(a-1)a(2a-1)/6
+		long temp1 = (x * (x - 1)) % (n * 6);
+		long res1 = (temp1 * (2 * x - 1)) % (n * 6);
+
+		// tinh du tu 1 den b
+		// sum2=b(b+1)(2b+1)/6
+		long temp2 = (y * (y + 1)) % (n * 6);
+		long res2 = (temp2 * (2 * y + 1)) % (n * 6);
+
+		res = ((res2 + n * 6 - res1)) % (n * 6);
+		// xuat
+		System.out.println(res / 6);
+	}
+}

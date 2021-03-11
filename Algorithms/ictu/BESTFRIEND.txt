@@ -1,0 +1,37 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class BestFriend {
+	private static int tongUoc(int n) {
+		// TODO Auto-generated method stub
+		int sum = 0;
+		for (int i = 1; i * i <= n; i++) {
+			if (n % i == 0) {
+				sum += i;
+				if (n / i != i) {
+					sum += n / i;
+				}
+			}
+		}
+
+		return sum - n;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+
+		// xu ly
+		int tongUocA = tongUoc(a);
+		int tonguocB = tongUoc(b);
+		// xuat
+		if (tongUocA == b && tonguocB == a)
+			System.out.println("YES");
+		else {
+			System.out.println("NO");
+		}
+	}
+}

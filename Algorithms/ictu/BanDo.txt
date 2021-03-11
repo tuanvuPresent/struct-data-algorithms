@@ -1,0 +1,66 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class Hotel {
+
+	static int soNguoi(char c[][], int n, int m) {
+		int cnt = 0;
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (c[i][j] == '*')
+					cnt++;
+			}
+		}
+		return cnt;
+	}
+
+	static void visit(char c[][], int x, int y) {
+		if (c[x][y] != '#') {
+			c[x][y] = '#';
+			visit(c, x, y + 1);
+			visit(c, x, y - 1);
+			visit(c, x + 1, y);
+			visit(c, x - 1, y);
+		}
+	}
+
+	public static void main(String[] args) {
+//		System.setIn(new FileInputStream("hotel.txt"));
+
+		Scanner sc = new Scanner(System.in);
+		int tCase = sc.nextInt();
+		for (int i = 1; i <= tCase; i++) {
+			// nhap
+			int n = sc.nextInt();
+			int m = sc.nextInt();
+			sc.nextLine();
+			String s[] = new String[n];
+			for (int j = 0; j < n; j++) {
+				s[j] = sc.nextLine();
+			}
+			// chuyen String sang char
+			char c[][] = new char[n][m];
+			for (int j = 0; j < n; j++) {
+				for (int j2 = 0; j2 < m; j2++) {
+					c[j][j2] = s[j].charAt(j2);
+				}
+			}
+
+			// ket qua
+			int soNguoi = soNguoi(c, n, m);
+			int soPhong = 0;
+			for (int row = 0; row < n; row++) {
+				for (int col = 0; col < m; col++) {
+					if (c[row][col] == '#')
+						continue;
+					visit(c, row, col);
+					soPhong++;
+				}
+			}
+			// xuat
+			double res = (double) soNguoi / soPhong;
+			System.out.format("%.2f%n", res);
+		}
+	}
+}

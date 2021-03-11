@@ -1,0 +1,59 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class AllInOnce {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int numTest = sc.nextInt();
+
+		for (int tCase = 0; tCase < numTest; tCase++) {
+			// nhap
+			double ab = sc.nextInt();
+			double bc = sc.nextInt();
+			double ca = sc.nextInt();
+
+			double af = sc.nextInt();
+			double bd = sc.nextInt();
+			double ce = sc.nextInt();
+
+			// xu ly
+			double fb = ab - af;
+			double dc = bc - bd;
+			double ea = ca - ce;
+
+			boolean isPgA = ab / ca == (bd) / (dc);
+			boolean isPgB = bc / ab == (ce) / (ea);
+			boolean isPgC = ca / bc == (af) / (fb);
+
+			boolean isDcA = ab * ab - bd * bd == ca * ca - dc * dc;
+			boolean isDcB = ab * ab - ea * ea == bc * bc - ce * ce;
+			boolean isDcC = ca * ca - af * af == bc * bc - fb * fb;
+
+			// tao thanh duong thang
+//			if (ab + bc == ca || bc + ca == ab || ca + ab == bc) {
+//				System.out.println("YES");
+//			}
+			// tam giac can va ...
+			if ((ab == ca && af == ea && bd == dc) || (ab == bc && fb == bd && ce == ea)
+					|| (bc == ca & dc == ce && af == fb)) {
+				System.out.println("YES");
+			}
+			// 3 duong trung tuyen
+			else if (af == fb && bd == dc && ce == ea) {
+				System.out.println("YES");
+			}
+			// 3 duong phan giac
+			else if (isPgA && isPgB && isPgC) {
+				System.out.println("YES");
+			}
+			// 3 duong cao
+			else if (isDcA && isDcB && isDcC) {
+				System.out.println("YES");
+			} else {
+				System.out.println("NO");
+			}
+		}
+	}
+
+}

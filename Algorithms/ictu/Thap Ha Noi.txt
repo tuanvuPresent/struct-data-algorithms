@@ -1,0 +1,45 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class ThapHaNoi {
+	static int k = 0;
+
+	private static void chuyen(int a[], int b[], int c[]) {
+		// TODO Auto-generated method stub
+		if (k > 0) {
+			k--;
+			a[0]--;
+			b[0]++;
+		}
+	}
+
+	private static void thapHN(int a[], int b[], int c[], int n) {
+		// a sang b voi c trung gian
+		// TODO Auto-generated method stub
+		if (k <= 0)
+			return;
+		if (n == 1) {
+			chuyen(a, b, c);
+		} else {
+			thapHN(a, c, b, n - 1);
+			chuyen(a, b, c);
+			thapHN(c, b, a, n - 1);
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int a[] = new int[1];
+		int b[] = new int[1];
+		int c[] = new int[1];
+
+		a[0] = sc.nextInt();
+		k = sc.nextInt();
+
+		thapHN(a, b, c, a[0]);
+		System.out.println(a[0] + " " + b[0] + " " + c[0]);
+	}
+
+}

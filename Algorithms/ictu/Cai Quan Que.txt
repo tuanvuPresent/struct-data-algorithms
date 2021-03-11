@@ -1,0 +1,34 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class DenPhongThi {
+
+	public static void main(String[] args) {
+		// ax+by=C
+
+		Scanner sc = new Scanner(System.in);
+
+		// nhap
+		int c = sc.nextInt();
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+
+		// xu ly
+		int x = 0;
+		boolean flag = false;
+		while ((c - a * x > 0)) {
+			if ((c - a * x) % b == 0) {
+				flag = true;
+				break;
+			}
+			x++;
+		}
+		if (flag) {
+			int res = x + (c - a * x) / b;
+			System.out.println(res);
+		} else {
+			System.out.println(-1);
+		}
+	}
+}

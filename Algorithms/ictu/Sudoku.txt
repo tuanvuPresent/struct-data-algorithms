@@ -1,0 +1,91 @@
+package baitap;
+
+import java.util.Scanner;
+
+public class TamGiacCan {
+
+	private static boolean isPrime(int n) {
+		if (n < 2)
+			return false;
+		for (int i = 2; i * i <= n; i++) {
+			if (n % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static boolean isCheck(int matrix[][]) {
+		// TODO Auto-generated method stub
+		// kiem tra hang
+		for (int row = 0; row < 9; row++) {
+
+			for (int i = 0; i < 9; i++) {
+				if (matrix[row][i] == 0)
+					continue;
+				for (int j = i + 1; j < 9; j++) {
+					if (matrix[row][i] == matrix[row][j]) {
+						return false;
+					}
+				}
+			}
+		}
+
+		// kiem tra cot
+		for (int col = 0; col < 9; col++) {
+
+			for (int i = 0; i < 9; i++) {
+				if (matrix[i][col] == 0)
+					continue;
+				for (int j = i + 1; j < 9; j++) {
+					if (matrix[i][col] == matrix[j][col]) {
+						return false;
+					}
+				}
+			}
+		}
+
+		// kiem tra 3x3
+		for (int i = 0; i < 9; i += 3) {
+			for (int j = 0; j < 9; j += 3) {
+
+				int k = 0;
+				int arr[] = new int[9];
+				for (int row = i; row < i + 3; row++) {
+					for (int col = j; col < j + 3; col++) {
+						arr[k++] = matrix[row][col];
+					}
+				}
+				// kiem tra mang arr
+				for (int l = 0; l < 9; l++) {
+					if (arr[l] == 0)
+						continue;
+					for (int l2 = l + 1; l2 < 9; l2++) {
+						if (arr[l] == arr[l2]) {
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		int numTest = sc.nextInt();
+		for (int tCase = 0; tCase < numTest; tCase++) {
+
+			int matrix[][] = new int[9][9];
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 9; j++) {
+					matrix[i][j] = sc.nextInt();
+				}
+			}
+
+			// xuat
+			System.out.println(isCheck(matrix));
+		}
+	}
+}
