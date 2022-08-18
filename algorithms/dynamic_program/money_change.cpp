@@ -1,7 +1,7 @@
 #include <iostream>
 
 using namespace std;
-
+// greedy ==> dynamic progran ( s >= bcnn ( arr) )
 int arr[101];
 int res[100001];
 
